@@ -118,33 +118,6 @@ plt.tight_layout()
 plt.show()
 
 # ==================================================================================
-# 📈 ANOVA Test - Comparison of Density across Vehicle Types
-# ==================================================================================
-grouped_density = [group['Density'].dropna() for name, group in data.groupby('vehicle_type')]
-anova_result = stats.f_oneway(*grouped_density)
-
-print("\n📊 ANOVA Test Result (Density across Vehicle Types):")
-print(f"   F-Statistic = {anova_result.statistic:.3f}, p-value = {anova_result.pvalue:.3f}")
-
-if anova_result.pvalue < 0.05:
-    print("✅ Significant difference in density between vehicle types (p < 0.05)")
-else:
-    print("❌ No significant difference in density between vehicle types (p >= 0.05)")
-
-# ==================================================================================
-# 🔬 Shapiro-Wilk Test for Normality (Density Column)
-# ==================================================================================
-stat, p = shapiro(data['Density'].dropna())
-
-print("\n🔬 Shapiro-Wilk Normality Test (on Density):")
-print(f"   Test Statistic = {stat:.3f}, p-value = {p:.3f}")
-
-if p < 0.05:
-    print("❌ Data is not normally distributed (p < 0.05)")
-else:
-    print("✅ Data seems to be normally distributed (p ≥ 0.05)")
-
-# ==================================================================================
 # 📉 Poisson Distribution of Vehicle Thefts Per Day
 # ==================================================================================
 # Count number of thefts per day
